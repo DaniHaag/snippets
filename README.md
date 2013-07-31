@@ -14,7 +14,7 @@ Javascript snippets
 
 encode unsafe text to be displaeyed as HTML
 ```javascript
-var unsafeText ="<p>test</test>"
+var unsafeText ="<p>test</p>"
 var div = document.createElement("div")
 div.textContent = unsafeText;
 var htmlEncodedString = div.innerHTML;
