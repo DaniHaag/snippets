@@ -27,7 +27,7 @@ Excel snippets
 ### VBA Functions
 
 Linkaddress returns the url saved in a hyperlink
-```vbscript
+```VB.net
 Function LinkAddress(reference As Range)
  LinkAddress = ""
  If reference.Hyperlinks.Count > 0 Then
@@ -39,7 +39,7 @@ End Function
 
 
 Comment
-```vbscript
+```VB.net
 Function Comment(reference As Range)
  Comment = ""
  If Not reference.Comment Is Nothing Then
@@ -50,7 +50,7 @@ End Function
 ```
 
 Reverse the contents
-```vbscript
+```VB.net
 Option Explicit
  
 Public Function Reverse(Text As String)
@@ -61,7 +61,7 @@ End Function
 
 calculate how many times the prime is in number (Primfaktorzerlegung)
 
-```vbscript
+```VB.net
 Public Function CountMod(Number As Long, Prime As Long)
     Dim x As Integer
     x = 0
@@ -79,7 +79,7 @@ End Function
 
 
 worksheet function to mark the current row in a specific color
-```vbscript
+```VB.net
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     If Application.CutCopyMode = False Then
         ActiveSheet.Cells.Interior.ColorIndex = 0
@@ -89,7 +89,7 @@ End Sub
 ```
 
 worksheet function to check if the reference is in bold
-```vbscript
+```VB.net
 Function IsBold(rCell As Range)
   IsBold = rCell.Font.Bold
 End Function
@@ -100,7 +100,8 @@ End Function
 [http://www.cpearson.com/excel/ArrayFormulas.aspx]
 
 ### ScratchPad (special purpose no general use probably )
-
+| description | code | 
+|--|--|
 | get part of the link from Masterfile Search | {{=MID(LinkAddress(A1);36;12)}} |
 |make table from multiple rows (4 rows in this case) |=IF(AND(A1<>"";MOD(ROW(A1);4)=1);A1;"")|
 |check for existence of a string value in an array of values (3 in example below)  \\Array funcition containing logical and \\ return value is a product of primes so you can exactly find out which values are in (MOD) and how often (divide as long mod(x) is 0) \\ col A contains a String to compare against (E8) and col D contains the actual |=PRODUCT(1;IF(($A$3:$A$300=E8)*($D$3:$D$300="high");3;IF(($A$3:$A$300=E8)*($D$3:$D$300="medium");2;1)))\\=PRODUCT(IF((Table1!$A$3:$A$300=E8);IF(Table1!$D$3:$D$300="low";2;1)*IF(Table1!$D$3:$D$300="medium";3;1)*IF(Table1!$D$3:$D$300="medium";5;1);FALSE))|
