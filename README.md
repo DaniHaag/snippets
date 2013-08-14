@@ -49,15 +49,13 @@ Function Comment(reference As Range)
 End Function
 ```
 
-* Reverse the contents
+* Reverse the contents (eg to find the last / )
 ```VB.net
 Option Explicit
- 
 Public Function Reverse(Text As String)
     Reverse = StrReverse(Text)
 End Function
 ```
-
 
 * calculate how many times the prime is in number (Primfaktorzerlegung)
 ```VB.net
@@ -75,7 +73,6 @@ Public Function CountMod(Number As Long, Prime As Long)
     Loop
 End Function
 ```
-
 
 * worksheet function to mark the current row in a specific color
 ```VB.net
@@ -110,7 +107,7 @@ End Function
 # Windows Commandline
 
 * recursively delete all files and folders
-```cmd.exe
+```
 for /f %i in ('dir /s/a/b .*') do del %i /q/s
 for /f %i in ('dir /s/a/b .*') do rmdir %i /q/s
 ```
