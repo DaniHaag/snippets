@@ -6,13 +6,13 @@ code snippets and links
 dev tool links  
 --------------
 
-markdown cheatsheet https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet  
-javascrip snippets  http://bgrins.github.io/devtools-snippets/|
+* markdown cheatsheet https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet  
+* javascrip snippets  http://bgrins.github.io/devtools-snippets/|
 
 Javascript snippets
 -------------------
 
-encode unsafe text to be displaeyed as HTML
+* encode unsafe text to be displaeyed as HTML
 ```javascript
 var unsafeText ="<p>test</p>"
 var div = document.createElement("div")
@@ -24,9 +24,9 @@ var htmlEncodedString = div.innerHTML;
 Excel snippets
 --------------
 
-### VBA Functions
+### Excel VBA Functions
 
-Linkaddress returns the url saved in a hyperlink
+* Linkaddress returns the url saved in a hyperlink
 ```VB.net
 Function LinkAddress(reference As Range)
  LinkAddress = ""
@@ -38,7 +38,7 @@ End Function
 ```
 
 
-Comment
+* Comment returns the comment of a cell if avalilable
 ```VB.net
 Function Comment(reference As Range)
  Comment = ""
@@ -49,7 +49,7 @@ Function Comment(reference As Range)
 End Function
 ```
 
-Reverse the contents
+* Reverse the contents
 ```VB.net
 Option Explicit
  
@@ -59,8 +59,7 @@ End Function
 ```
 
 
-calculate how many times the prime is in number (Primfaktorzerlegung)
-
+* calculate how many times the prime is in number (Primfaktorzerlegung)
 ```VB.net
 Public Function CountMod(Number As Long, Prime As Long)
     Dim x As Integer
@@ -78,7 +77,7 @@ End Function
 ```
 
 
-worksheet function to mark the current row in a specific color
+* worksheet function to mark the current row in a specific color
 ```VB.net
 Private Sub Worksheet_SelectionChange(ByVal Target As Range)
     If Application.CutCopyMode = False Then
@@ -88,7 +87,7 @@ Private Sub Worksheet_SelectionChange(ByVal Target As Range)
 End Sub
 ```
 
-worksheet function to check if the reference is in bold
+* worksheet function to check if the reference is in bold
 ```VB.net
 Function IsBold(rCell As Range)
   IsBold = rCell.Font.Bold
@@ -108,3 +107,10 @@ End Function
 |exchange primes with text  \\ either prints high, or medium, falls back to low if n/a|=IF(MOD(L16;3)=0;"high";IF(MOD(L16;2)=0;"medium";"low"))|
 |lookup max value from "low","medium","high"|=IF(MOD(PRODUCT(1;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="high");3;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="medium");2;1)));3)=0;"high";IF(MOD(PRODUCT(5;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="high");3;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="medium");2;1)));2)=0;"medium";"low"))|
 
+# Windows Commandline
+
+* recursively delete all files and folders
+```cmd.exe
+for /f %i in ('dir /s/a/b .*') do del %i /q/s
+for /f %i in ('dir /s/a/b .*') do rmdir %i /q/s
+```
