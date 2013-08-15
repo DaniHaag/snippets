@@ -97,12 +97,13 @@ End Function
 
 ### ScratchPad (special purpose no general use probably )
 | description | code | 
-|--|--|
-| get part of the link from Masterfile Search | {{=MID(LinkAddress(A1);36;12)}} |
-|make table from multiple rows (4 rows in this case) |=IF(AND(A1<>"";MOD(ROW(A1);4)=1);A1;"")|
-|check for existence of a string value in an array of values (3 in example below)  \\Array funcition containing logical and \\ return value is a product of primes so you can exactly find out which values are in (MOD) and how often (divide as long mod(x) is 0) \\ col A contains a String to compare against (E8) and col D contains the actual |=PRODUCT(1;IF(($A$3:$A$300=E8)*($D$3:$D$300="high");3;IF(($A$3:$A$300=E8)*($D$3:$D$300="medium");2;1)))\\=PRODUCT(IF((Table1!$A$3:$A$300=E8);IF(Table1!$D$3:$D$300="low";2;1)*IF(Table1!$D$3:$D$300="medium";3;1)*IF(Table1!$D$3:$D$300="medium";5;1);FALSE))|
-|exchange primes with text  \\ either prints high, or medium, falls back to low if n/a|=IF(MOD(L16;3)=0;"high";IF(MOD(L16;2)=0;"medium";"low"))|
-|lookup max value from "low","medium","high"|=IF(MOD(PRODUCT(1;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="high");3;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="medium");2;1)));3)=0;"high";IF(MOD(PRODUCT(5;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="high");3;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="medium");2;1)));2)=0;"medium";"low"))|
+| ----------- | ---- |
+| get part of the link from Masterfile Search | `{{=MID(LinkAddress(A1);36;12)}}` |
+|make table from multiple rows (4 rows in this case) | `=IF(AND(A1<>"";MOD(ROW(A1);4)=1);A1;"")`|
+|check for existence of a string value in an array of values (3 in example below) <br/> Array funcition containing logical and <br/>return value is a product of primes so you can exactly find out which values are in (MOD) and how often (divide as long mod(x) is 0) <br/> col A contains a String to compare against (E8) and col D contains the actual |`=PRODUCT(1;IF(($A$3:$A$300=E8)*($D$3:$D$300="high");3;IF(($A$3:$A$300=E8)*($D$3:$D$300="medium");2;1)))\\=PRODUCT(IF((Table1!$A$3:$A$300=E8);IF(Table1!$D$3:$D$300="low";2;1)*IF(Table1!$D$3:$D$300="medium";3;1)*IF(Table1!$D$3:$D$300="medium";5;1);FALSE))`|
+|exchange primes with text  \\ either prints high, or medium, falls back to low if n/a|`=IF(MOD(L16;3)=0;"high";IF(MOD(L16;2)=0;"medium";"low"))`|
+|lookup max value from "low","medium","high"|
+`=IF(MOD(PRODUCT(1;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="high");3;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="medium");2;1)));3)=0;"high";IF(MOD(PRODUCT(5;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="high");3;IF((Table1!$A$3:$A$300=E8)*(Table1!$D$3:$D$300="medium");2;1)));2)=0;"medium";"low"))`|
 
 # Windows Commandline
 
