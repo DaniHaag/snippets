@@ -114,5 +114,5 @@ for /f %i in ('dir /s/a/b .*') do rmdir %i /q/s
 
 * build all maven projects in a sub directory calle ...Build
 ```
-for /f %i in ('dir /b/a:d *Build') do pushd . && cd %i & mvn clean install & cd popd
+for /f %i in ('dir /b/a:d *Build') do pushd . && cd %i & mvn clean install & popd
 ```
