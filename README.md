@@ -20,6 +20,37 @@ div.textContent = unsafeText;
 var htmlEncodedString = div.innerHTML;
 ```
 
+* simple json templatig
+```javascript
+var controller = {
+    templates : {
+        ie: {path: "%%path%%"},
+        ff: {ffpath: "%%path%%"}
+    },
+    model : [
+        {name: "ie8", type: "ie", parameters :{path:"asdf"}},
+        {name: "ff20", type: "ff", parameters :{path:"jkloe"}}
+        ],
+    applyTemplates : function(){
+        var templateResult = [];
+        for(var i = 0; i< controller.model.length;i++){
+            var templateData = controller.model[i];
+            var template = controller.templates[templateData.type]
+            var templateString = JSON.stringify(template);
+            for (var parameterName in templateData.parameters){
+                templateString = templateString.replace(
+                 new RegExp("%%"+parameterName+"%%", 'g'), 
+                    templateData.parameters[parameterName]
+                );
+            }
+            templateResult.push(JSON.parse(templateString));
+        }
+        console.debug(templateResult);
+        return templateResult
+    }
+};
+JSON.stringify(controller.applyTemplates());
+```
 
 Excel snippets
 --------------
