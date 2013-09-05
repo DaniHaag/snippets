@@ -20,8 +20,57 @@ div.textContent = unsafeText;
 var htmlEncodedString = div.innerHTML;
 ```
 
-* simple json templatig
+* simple json templatig. In this case it creates browser configurations for selenium grid
 ```javascript
+var controller = {
+    templates : {
+        ie: {
+         "browserName":"internet explorer",
+         "version":"%%version%%",
+         "platform":"%%platform%%",
+         "maxInstances":1,
+         "seleniumProtocol":"WebDriver"
+      },
+        ff: {
+         "browserName":"firefox",
+         "version":"%%version%%",
+         "platform":"%%platform%%",
+         "maxInstances":5,
+         "firefox_binary":"%%path%%",
+         "seleniumProtocol":"WebDriver"
+      },
+        safari : {
+         "browserName":"safari",
+         "version":"%%version%%",
+         "platform":"%%platform%%",
+         "maxInstances":5,
+         "seleniumProtocol":"WebDriver"
+      },
+        chrome: {
+         "browserName":"chrome",
+         "version":"%%version%%",
+         "platform":"%%platform%%",
+         "maxInstances":5,
+         "seleniumProtocol":"WebDriver",
+         "chrome.binary":"%%path%%",
+         "chrome.switches":[
+            "--allow-file-access-from-files",
+            "--disable-web-security",
+            "--enable-file-cookies"
+         ],
+         "chromeOptions":{
+            "args":[
+               "--allow-file-access-from-files",
+               "--disable-web-security",
+               "--enable-file-cookies"
+            ],
+            "binary": "%%path%%",
+            "extensions":[
+            ]
+         }
+      }
+    },
+    model : [
         {name: "ie8", type: "ie", parameters :{platform:"XP",version:"8"}},
         {name: "ff3.5", type: "ff", parameters :{platform:"XP",version:"3.5",path:"E:\\\\Browser - Portable Versions\\\\FirefoxPortable_3.5.11_German\\\\App\\\\Firefox\\\\firefox.exe"}},	   
         {name: "ff7", type: "ff", parameters :{platform:"XP",version:"7",path:"E:\\\\Browser - Portable Versions\\\\Portable_Firefox_7.0.1\\\\Portable_Firefox_7.0.1\\\\Firefox\\\\firefox.exe"}},	   
@@ -74,7 +123,7 @@ var htmlEncodedString = div.innerHTML;
         {name: "chrome24", type: "chrome", parameters :{platform:"WIN8",version:"24",path:"E:\\\\Browser - Portable Versions\\\\PortableGoogleChrome24\\\\Chrome\\\\chrome.exe"}},	   
         {name: "chrome28", type: "chrome", parameters :{platform:"WIN8",version:"28",path:"E:\\\\Browser - Portable Versions\\\\GoogleChromePortable_28.0.1500.95\\\\App\\\\Chrome-bin\\\\chrome.exe"}},	   
         {name: "chrome29", type: "chrome", parameters :{platform:"WIN8",version:"29",path:"E:\\\\Browser - Portable Versions\\\\GoogleChromePortableBeta\\\\App\\\\Chrome-bin\\\\chrome.exe"}},	 
-        ]        ],
+        ],
     applyTemplates : function(){
         var templateResult = [];
         for(var i = 0; i< controller.model.length;i++){
@@ -95,7 +144,6 @@ var htmlEncodedString = div.innerHTML;
 };
 JSON.stringify(controller.applyTemplates());
 ```
-
 Excel snippets
 --------------
 
