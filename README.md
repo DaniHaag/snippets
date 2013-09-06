@@ -1,6 +1,6 @@
 snippets
 ========
-
+:
 code snippets and links
 
 dev tool links  
@@ -20,7 +20,7 @@ div.textContent = unsafeText;
 var htmlEncodedString = div.innerHTML;
 ```
 
-* simple json templatig. In this case it creates browser configurations for selenium grid
+* simple json templatimg. In this case it creates browser configurations for selenium grid
 ```javascript
 var controller = {
     templates : {
