@@ -20,6 +20,17 @@ div.textContent = unsafeText;
 var htmlEncodedString = div.innerHTML;
 ```
 
+* wrap all postmessage calls on the window.
+```javascript
+window.onmessage = function(){console.debug("afterPost",arguments)};
+var temp = temp || window.postMessage;
+window.postMessage = function(){
+    temp.apply(this,arguments);
+    console.debug("beforePost",arguments);
+    };
+window.postMessage("foobar","*");
+```
+
 * simple json templatimg. In this case it creates browser configurations for selenium grid
 ```javascript
 var controller = {
