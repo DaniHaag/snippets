@@ -251,3 +251,16 @@ for /f %i in ('dir /s/a/b .*') do rmdir %i /q/s
 ```
 for /f %i in ('dir /b/a:d *Build') do pushd . && cd %i & mvn clean install & popd
 ```
+
+
+### export smart card certificates in WIN7.
+
+# open mmc.exe
+# File > add Remove Snapin 
+# select "Certificates" > "Add" > OK
+# select "Console Root\Certificates - Current User\Personal\Certificates
+# choose the certifcate
+# click on certificate with right mouse button 
+# all tasks > export
+# enter path where to store file to 
+# ok
