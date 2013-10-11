@@ -247,20 +247,19 @@ for /f %i in ('dir /s/a/b .*') do del %i /q/s
 for /f %i in ('dir /s/a/b .*') do rmdir %i /q/s
 ```
 
-* build all maven projects in a sub directory calle ...Build
+* build all maven projects in a sub directory called ...Build
 ```
 for /f %i in ('dir /b/a:d *Build') do pushd . && cd %i & mvn clean install & popd
 ```
 
-
 ### export smart card certificates in WIN7.
 
-# open mmc.exe
-# File > add Remove Snapin 
-# select "Certificates" > "Add" > OK
-# select "Console Root\Certificates - Current User\Personal\Certificates
-# choose the certifcate
-# click on certificate with right mouse button 
-# all tasks > export
-# enter path where to store file to 
-# ok
+1. open mmc.exe
+2. File > Add/Remove Snapin 
+3. select "Certificates" > "Add" > OK
+4. select "Console Root\Certificates - Current User\Personal\Certificates
+5. choose the certifcate
+6. click on certificate with right mouse button 
+7. all tasks > export
+8. enter path where to store file to 
+9. ok
