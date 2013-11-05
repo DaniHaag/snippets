@@ -251,7 +251,10 @@ for /f %i in ('dir /s/a/b .*') do rmdir %i /q/s
 ```
 for /f %i in ('dir /b/a:d *Build') do pushd . && cd %i & mvn clean install & popd
 ```
-
+* build maven projects from Directory list
+```
+for /d %i in (dirA dibb) do pushd . && cd %i & mvn clean install & popd
+```
 ### export smart card certificates in WIN7.
 
 1. open mmc.exe
