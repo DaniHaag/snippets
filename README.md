@@ -1,6 +1,8 @@
 snippets
 ========
-:
+
+__this readme  is not updated please goto [wiki](../../wiki)__
+
 code snippets and links
 
 dev tool links  
