@@ -3,6 +3,7 @@ snippets
 
 __this readme  is not updated please goto [wiki](../../wiki)__
 
+<!---
 code snippets and links
 
 dev tool links  
@@ -268,3 +269,4 @@ for /d %i in (dirA dibb) do pushd . && cd %i & mvn clean install & popd
 7. all tasks > export
 8. enter path where to store file to 
 9. ok
+-->
