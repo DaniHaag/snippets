@@ -206,7 +206,7 @@ measurements.forEach(function(measurement,idx){
     template += "<td><h4>"+(measurement.temp?measurement.temp.toPrecision(3) +"°C":"")+"</h4></td>";
     template += "<td><h4>"+(measurement.relHum?measurement.relHum.toPrecision(3)+"%" :"")+"</h4>"+(shouldVentilate?"<h5>("+(-measurement.relHum+measurement.equilibriumHum).toPrecision(2)+"%)</h5>":"")+"</td>";
     template += "<td><h4>"+(measurement.equilibriumHum?measurement.equilibriumHum.toPrecision(3) +"%":"")+"</h4></td>";
-    template += "<td><h4>"+(measurement.absoluteHum?measurement.absoluteHum.toPrecision(3) +"&nbsp;g/m&sup3;":"")+"</h4>"+(shouldVentilate?"<h5>("+(-measurement.absoluteHum+absoluteHumOutside).toPrecision(2)+"%)</h5>":"")+"</td>";
+    template += "<td><h4>"+(measurement.absoluteHum?measurement.absoluteHum.toPrecision(3) +"&nbsp;g/m&sup3;":"")+"</h4>"+(shouldVentilate?"<h5>("+(-measurement.absoluteHum+absoluteHumOutside).toPrecision(2)+")</h5>":"")+"</td>";
     template += "<td><h4>"+(measurement.dewPoint?measurement.dewPoint.toPrecision(3) +"°C":"")+"</h4></td>";
     template += "<td><h4>"+(measurement.warmup ?measurement.warmup.toPrecision(3) +"°C":"")+"</h4></td>";+"</h4></td>";
     template += "</tr>";
