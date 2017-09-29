@@ -1,3 +1,5 @@
+//http://measurements.mobile-alerts.eu/Home/SensorsOverview?phoneid=480369289741
+//https://measurements.mobile-alerts.eu/Home/SensorsOverview?phoneid=796749885278
 var mw = 18.016, rStar = 8314.3;
 var targetRelHum = 65;
 var absoluteHumOutside = null;
@@ -188,8 +190,9 @@ function getHumObject(measurement, refAbsoluteHum, targetRelHum=65){
      }   
     return result; 
 }
-var div = document.createElement("div")
-var template = "<table><tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Temparatur</h5></th><th><h5>Luftfeuchtigkeit</h5></th><th><h5>Ziel LF nach Lüften</h5></td><td><h5>Absolute LF</h5></th><th><h5>Taupunkt</h5></th>"
+var div = document.createElement("div");
+div.setAttribute('class', 'responstable')
+var template = "<table><tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Temparatur</h5></th><th><h5>Luftfeuchtigkeit</h5></th><th><h5>Ziel LF nach Lüften</h5></td><td><h5>Absolute LF</h5></th><th><h5>Taupunkt</h5></th><th><h5>Aufheizen für 65% LF</h5></th>"
 measurements.forEach(function(measurement,idx){
     var shouldVentilate = measurement.relHum && measurement.relHum>measurement.equilibriumHum;
     var color = 118;
@@ -199,11 +202,11 @@ measurements.forEach(function(measurement,idx){
     var attribute = shouldVentilate ? 'style="background-color: hsl('+color+', 65%, '+light+'%);"' : "";
     template += "<tr>"
     template += "<td><h5>"+measurement.id+"</h5></td>";
-    template += "<td><h4 "+attribute+">"+measurement.name+"</h4></td>";
+    template += "<td "+attribute+"><h4>"+measurement.name+"</h4></td>";
     template += "<td><h4>"+(measurement.temp?measurement.temp.toPrecision(3) +" C":"")+"</h4></td>";
     template += "<td><h4>"+(measurement.relHum?measurement.relHum.toPrecision(3)+"%" :"")+"</h4>"+(shouldVentilate?"<h5>("+(-measurement.relHum+measurement.equilibriumHum).toPrecision(2)+"%)</h5>":"")+"</td>";
     template += "<td><h4>"+(measurement.equilibriumHum?measurement.equilibriumHum.toPrecision(3) +" %":"")+"</h4></td>";
-    template += "<td><h4>"+(measurement.absoluteHum?measurement.absoluteHum.toPrecision(3) +" g/m3":"")+"</h4></td>";
+    template += "<td><h4>"+(measurement.absoluteHum?measurement.absoluteHum.toPrecision(3) +" g/m&sup3;":"")+"</h4></td>";
     template += "<td><h4>"+(measurement.dewPoint?measurement.dewPoint.toPrecision(3) +" C":"")+"</h4></td>";
     template += "<td><h4>"+(measurement.warmup ?measurement.warmup.toPrecision(3) +" C":"")+"</h4></td>";+"</h4></td>";
     template += "</tr>";
@@ -214,5 +217,12 @@ template +="</table>";
 
 div.innerHTML = template;
 var elAfter = document.querySelector(".panel-default");
-//elAfter.insertBefore(el, elAfter);
 elAfter.parentNode.insertBefore(div, elAfter)
+
+//elAfter.insertBefore(el, elAfter);
+var script = document.createElement("link");
+script.setAttribute('href','https://rawgit.com/DaniHaag/snippets/master/js/src/main/js/mobile-alerts/tablestyle.css');
+//script.setAttribute('href','https://raw.githubusercontent.com/DaniHaag/snippets/master/js/src/main/js/mobile-alerts/tablestyle.css');
+script.setAttribute('rel','stylesheet')
+script.setAttribute('type','text/css')
+document.head.appendChild(script);
