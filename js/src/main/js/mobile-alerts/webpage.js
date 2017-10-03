@@ -1,5 +1,3 @@
-//http://measurements.mobile-alerts.eu/Home/SensorsOverview?phoneid=480369289741
-//https://measurements.mobile-alerts.eu/Home/SensorsOverview?phoneid=796749885278
 var mw = 18.016, rStar = 8314.3;
 var targetRelHum = 65;
 var absoluteHumOutside = null;
