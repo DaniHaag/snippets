@@ -200,7 +200,7 @@ measurements.forEach(function(measurement,idx){
     color = color * (1-(measurement.relHum-55) /40);
     light = 100 *(1 - (measurement.relHum - measurement.equilibriumHum)/100*5);
     light = Math.max(15,light);
-    var fontColor = light < 25? "font-color: white;":"";
+    var fontColor = light < 25? "color: white;":"";
     var attribute = shouldVentilate ? 'style="background-color: hsl('+color+', 65%, '+ light +'%);'+ fontColor +'"' : "";
     template += "<tr>"
     template += "<td><h5>"+measurement.id+"</h5></td>";
