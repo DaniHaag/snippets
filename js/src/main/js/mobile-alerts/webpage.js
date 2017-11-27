@@ -52,6 +52,7 @@ function collectData() {
             measurement = {};
             measurement.name = "Bad EG";
             measurement.id = id;
+            measurement.time_d = time;
             measurement.temp = temp;
             if (hum) {
                 measurement.relHum = hum
@@ -74,6 +75,7 @@ function collectData() {
             measurement = {};
             measurement.name = "Vorrat UG";
             measurement.id = id;
+            measurement.time_d = time;
             measurement.temp = temp;
             if (hum) {
                 measurement.relHum = hum
@@ -96,6 +98,7 @@ function collectData() {
             measurement = {};
             measurement.name = "Garage UG";
             measurement.id = id;
+            measurement.time_d = time;
             measurement.temp = temp;
             if (hum) {
                 measurement.relHum = hum
@@ -227,9 +230,11 @@ function renderTable(measurements) {
         light = Math.max(15, light);
         var fontColor = light < 25 ? "color: white;" : "";
         var attribute = shouldVentilate ? 'style="background-color: hsl(' + color + ', 65%, ' + light + '%);' + fontColor + '"' : "";
+        var time= measurement.time_d? measurement.time_d.toLocaleTimeString():"";
+        var deltaTime = measurement.time_d? "(-"+ new Date(Date.now() - measurement.time_d.getTime() ).toISOString().replace(/^.*T(00:)*(.*).\d{3}Z$/, "$2")+ ")":"";
         template += "<tr>"
-        template += "<td><h5>" + measurement.id + "</h5></td>";
-        template += "<td " + attribute + "><h4>" + measurement.name + "</h4></td>";
+        template += "<td><h5>" + measurement.id + "<br>"+ time+  " <sup>" + deltaTime +"</sup></h5></td>";
+        template += "<td " + attribute + "><h4>" +measurement.name + "</h4></td>";
         template += "<td><h4>" + (measurement.temp ? measurement.temp.toPrecision(3) + "°C" : "") + "</h4></td>";
         template += "<td><h4>" + (measurement.relHum ? measurement.relHum.toPrecision(3) + "%" : "") + "</h4>" + (shouldVentilate ? "<h5>(" + (-measurement.relHum + measurement.equilibriumHum).toPrecision(2) + "%)</h5>" : "") + "</td>";
         template += "<td><h4>" + (measurement.equilibriumHum ? measurement.equilibriumHum.toPrecision(3) + "%" : "") + "</h4></td>";
@@ -268,7 +273,7 @@ function conditionalInitialistion(counter){
     function timeout() {
         if(counter>0){
             counter--;
-        console.debug("Hello");
+        console.debug("Hello", new Date(Date.now()));
 
         try {
             executor();
