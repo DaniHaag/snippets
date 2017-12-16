@@ -286,7 +286,7 @@ function conditionalInitialistion(counter){
     }
     setTimeout(timeout, 2000);
 }
-if(document){
+if(typeof document != "undefined"){
     collectData();
     renderTable(measurements);
     initialize();
