@@ -1,5 +1,5 @@
 var mw = 18.016, rStar = 8314.3;
-var targetRelHum = 65;
+var defaultRelHum = 65;
 var absoluteHumOutside = null;
 var measurements = [];
 
@@ -118,7 +118,7 @@ function collectData() {
             //equilibriumHum(hum, temp, absoluteHumOutside),
             //tauPunkt(hum, temp),
             //warmup(hum,temp, 65),
-            getHumObject(measurement, absoluteHumOutside, 65)
+            getHumObject(measurement, absoluteHumOutside, defaultRelHum)
         );
     })
 }
@@ -189,13 +189,15 @@ function equilibriumHum(relHum, temp, refAbsoluteHum) {
     return result;
 }
 
-function warmup(relHum, temp, targetRelHum=65) {
+function warmup(relHum, temp, targetRelHum) {
+    targetRelHum = targetRelHum?targetRelHum:defaultRelHum;
     var logarithm = Math.log10(absoluteHum(relHum, temp) * Cel2Kel(temp) * rStar / (targetRelHum * 6.1078 * 1000 * mw  ));
     var result = getB(temp) * logarithm / (getA(temp) - logarithm);
     return result;
 }
 
-function getHumObject(measurement, refAbsoluteHum, targetRelHum=65) {
+function getHumObject(measurement, refAbsoluteHum, targetRelHum) {
+    targetRelHum = targetRelHum?targetRelHum:defaultRelHum;
     var result = JSON.parse(JSON.stringify(measurement), dateTimeReviver);
     if (measurement && measurement.relHum && measurement.temp) {
         result.absoluteHum = absoluteHum(measurement.relHum, measurement.temp);
