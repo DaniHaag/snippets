@@ -3,6 +3,11 @@ var defaultRelHum = 65;
 var absoluteHumOutside = null;
 var measurements = [];
 
+//polyfills
+Math.log10 = Math.log10 || function(x) {
+  return Math.log(x) * Math.LOG10E;
+};
+
 function collectData() {
     document.querySelectorAll(".sensor").forEach(function (el, idx) {
         var temp, hum, id, name, time;
