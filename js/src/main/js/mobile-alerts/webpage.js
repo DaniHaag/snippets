@@ -286,6 +286,8 @@ function conditionalInitialistion(counter){
     }
     setTimeout(timeout, 2000);
 }
-collectData();
-renderTable(measurements);
-initialize();
+if(document){
+    collectData();
+    renderTable(measurements);
+    initialize();
+}
