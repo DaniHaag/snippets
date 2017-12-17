@@ -8,7 +8,7 @@ Math.log10 = Math.log10 || function(x) {
   return Math.log(x) * Math.LOG10E;
 };
 
-function collectData() {
+function collectData(targetRelHum) {
     document.querySelectorAll(".sensor").forEach(function (el, idx) {
         var temp, hum, id, name, time;
         name = el.querySelector("h3").innerText;
@@ -292,7 +292,7 @@ function conditionalInitialistion(counter){
     setTimeout(timeout, 2000);
 }
 if(typeof document != "undefined"){
-    collectData();
+    collectData(defaultRelHum);
     renderTable(measurements);
     initialize();
 }
