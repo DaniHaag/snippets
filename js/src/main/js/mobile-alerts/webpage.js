@@ -18,6 +18,8 @@ function collectData(targetRelHum) {
         temp = el.querySelector("div.sensor-component:nth-child(4) > h4").innerText;
         temp = parseFloat(temp.replace(",", "."))
 
+        el.querySelector("h3 a").setAttribute("id", id);
+      
         hum = el.querySelector("div.sensor-component:nth-child(5) > h4");
         if (hum) {
             var cln = hum.parentNode;
@@ -240,7 +242,7 @@ function renderTable(measurements) {
         var time= measurement.time_d? measurement.time_d.toLocaleTimeString():"";
         var deltaTime = measurement.time_d? "(-"+ new Date(Date.now() - measurement.time_d.getTime() ).toISOString().replace(/^.*T(00:)*(.*).\d{3}Z$/, "$2")+ ")":"";
         template += "<tr>"
-        template += "<td><h5>" + measurement.id + "<br>"+ time+  " <sup>" + deltaTime +"</sup></h5></td>";
+        template += "<td><h5><a href='#"+ measurement.id + "'>" + measurement.id + "</a><br>"+ time +" <sup>" + deltaTime +"</sup></h5></td>";
         template += "<td " + attribute + "><h4>" +measurement.name + "</h4></td>";
         template += "<td><h4>" + (measurement.temp ? measurement.temp.toPrecision(3) + "°C" : "") + "</h4></td>";
         template += "<td><h4>" + (measurement.relHum ? measurement.relHum.toPrecision(3) + "%" : "") + "</h4>" + (shouldVentilate ? "<h5>(" + (-measurement.relHum + measurement.equilibriumHum).toPrecision(2) + "%)</h5>" : "") + "</td>";
