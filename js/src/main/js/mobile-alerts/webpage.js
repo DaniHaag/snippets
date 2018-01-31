@@ -19,7 +19,6 @@ function collectData(targetRelHum) {
         temp = parseFloat(temp.replace(",", "."))
 
         hum = el.querySelector("div.sensor-component:nth-child(5) > h4");
-        el.querySelector("h3 a").setAttribute("id", id);
         if (hum) {
             var cln = hum.parentNode;
             hum = hum.innerText
@@ -188,6 +187,8 @@ function tauPunkt(relHum, temp) {
     var c = Math.log10(DD(relHum, temp) / 6.1078);
     var result = (getB(temp) * c) / (getA(temp) - c);
     return result;
+}
+
 function equilibriumHum(relHum, temp, refAbsoluteHum) {
     var result = refAbsoluteHum * Cel2Kel(temp) * rStar / (SDD(temp) * 1000 * mw  );
     return result;
@@ -220,13 +221,18 @@ function dateTimeReviver(key, value) {
     } else {
         return value;
     }
-};.forEach(function (measurement, idx) {
+};
+
+function renderTable(measurements) {
+    var div = document.createElement("div");
+    div.setAttribute('class', 'responstable');
+    div.setAttribute('id', 'summaryTable');
+    var template = "<table><tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Temparatur</h5></th><th><h5>Luftfeuchtigkeit</h5></th><th><h5>Ziel LF nach Lüften</h5></td><td><h5>Absolute LF</h5></th><th><h5>Taupunkt</h5></th><th><h5>Aufheizen für 65% LF</h5></th>"
+    measurements.forEach(function (measurement, idx) {
         var shouldVentilate = measurement.relHum && measurement.relHum > measurement.equilibriumHum;
         var color = 118;
         var light = 48;
-        color = col
-}
-or * (1 - (measurement.relHum - 55) / 40);
+        color = color * (1 - (measurement.relHum - 55) / 40);
         light = 100 * (1 - (measurement.relHum - measurement.equilibriumHum) / 100 * 5);
         light = Math.max(15, light);
         var fontColor = light < 25 ? "color: white;" : "";
@@ -234,14 +240,7 @@ or * (1 - (measurement.relHum - 55) / 40);
         var time= measurement.time_d? measurement.time_d.toLocaleTimeString():"";
         var deltaTime = measurement.time_d? "(-"+ new Date(Date.now() - measurement.time_d.getTime() ).toISOString().replace(/^.*T(00:)*(.*).\d{3}Z$/, "$2")+ ")":"";
         template += "<tr>"
-
-function renderTable(measurements) {
-    var div = document.createElement("div");
-    div.setAttribute('class', 'responstable');
-    div.setAttribute('id', 'summaryTable');
-    var template = "<table><tr><th><h5>ID</h5></th><th><h5>Name</h5></th><th><h5>Temparatur</h5></th><th><h5>Luftfeuchtigkeit</h5></th><th><h5>Ziel LF nach Lüften</h5></td><td><h5>Absolute LF</h5></th><th><h5>Taupunkt</h5></th><th><h5>Aufheizen für 65% LF</h5></th>"
-    measurements
-        template += "<td><h5><a href='#"+ measurement.id + "'>" + measurement.id + "</a><br>"+ time +" <sup>" + deltaTime +"</sup></h5></td>";
+        template += "<td><h5>" + measurement.id + "<br>"+ time+  " <sup>" + deltaTime +"</sup></h5></td>";
         template += "<td " + attribute + "><h4>" +measurement.name + "</h4></td>";
         template += "<td><h4>" + (measurement.temp ? measurement.temp.toPrecision(3) + "°C" : "") + "</h4></td>";
         template += "<td><h4>" + (measurement.relHum ? measurement.relHum.toPrecision(3) + "%" : "") + "</h4>" + (shouldVentilate ? "<h5>(" + (-measurement.relHum + measurement.equilibriumHum).toPrecision(2) + "%)</h5>" : "") + "</td>";
