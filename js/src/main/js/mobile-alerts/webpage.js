@@ -270,7 +270,7 @@ function renderTable(measurements) {
 function initialize() {
     //elAfter.insertBefore(el, elAfter);
     var script = document.createElement("link");
-    script.setAttribute('href', 'https://cdn.jsdelivr.net/gh/DaniHaag/snippets@master/js/src/main/js/mobile-alerts/tablestyle.css);
+    script.setAttribute('href', 'https://cdn.jsdelivr.net/gh/DaniHaag/snippets@master/js/src/main/js/mobile-alerts/tablestyle.css');
     //script.setAttribute('href','https://raw.githubusercontent.com/DaniHaag/snippets/master/js/src/main/js/mobile-alerts/tablestyle.css');
     script.setAttribute('rel', 'stylesheet')
     script.setAttribute('type', 'text/css')
